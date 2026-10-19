@@ -362,84 +362,67 @@ convert()
       </div>
     </section>
 
-    <section class="info-section" aria-labelledby="json-csv-guide-title">
-      <h2 id="json-csv-guide-title">Convert JSON data to CSV online</h2>
+    <section id="faq" class="info-section" aria-labelledby="faq-title">
+      <h2 id="faq-title">Frequently asked questions</h2>
+
+      <details>
+        <summary>How do I convert JSON to CSV?</summary>
+        <p>Paste your JSON or load a JSON file, choose the columns and delimiter you need, then convert and copy or download the CSV.</p>
+      </details>
+
+      <details>
+        <summary>Can I convert nested JSON or API responses?</summary>
+        <p>Yes. DevConvert can detect arrays of objects inside an API response. Choose the array you want to convert, and enable nested-object flattening to create columns such as <code>profile.city</code>.</p>
+      </details>
+
+      <details>
+        <summary>Is my JSON data uploaded to a server?</summary>
+        <p>No. Conversion runs locally in your browser. The JSON you enter is processed on your device and is not sent to a DevConvert conversion server.</p>
+      </details>
+
+      <details>
+        <summary>Can I choose which fields become CSV columns?</summary>
+        <p>Yes. Use the column checklist to select the fields you want. The preview and exported CSV will reflect your selection.</p>
+      </details>
+
+      <details>
+        <summary>How are arrays inside objects handled?</summary>
+        <p>Array values stay in a single CSV cell as JSON instead of being expanded into multiple rows.</p>
+      </details>
+    </section>
+
+    <section id="about" class="info-section">
+      <h2>About DevConvert</h2>
       <p>
-        DevConvert is a free JSON to CSV converter for turning JSON arrays into spreadsheet-ready
-        comma-separated values. Use the preview to check your output, choose the columns you need,
-        and download a CSV file for Excel, Google Sheets, or another data tool.
+        DevConvert provides simple browser-based tools for everyday developer workflows.
+        Our first tool converts JSON arrays into CSV so developers can review data, select
+        columns, and export results without needing a separate application.
       </p>
+    </section>
 
-      <h3>Working with nested JSON and API responses</h3>
+    <section id="privacy" class="info-section">
+      <h2>Privacy Policy</h2>
       <p>
-        If your JSON comes from an API response, the converter can detect arrays of objects inside
-        the response so you can choose the data set to export. Enable “Flatten nested objects” to
-        turn nested fields into column names such as <code>profile.city</code>. Array values remain
-        together in a single CSV cell.
+        The JSON-to-CSV conversion in this tool runs locally in your browser. The JSON you
+        enter or upload is processed on your device and is not sent to a DevConvert conversion
+        server. If you choose to copy or download the result, that action is handled by your
+        browser.
       </p>
-
-      <h3>Example JSON input</h3>
-      <pre class="example-code"><code>[
-  { "name": "Alice", "role": "Developer" },
-  { "name": "Bob", "role": "Designer" }
-]</code></pre>
-
-      <h3>Frequently asked questions</h3>
-      <div class="faq-list">
-        <details>
-          <summary>How do I convert JSON to CSV?</summary>
-          <p>Paste your JSON or upload a .json file, choose any columns and delimiter options, then convert and download the CSV.</p>
-        </details>
-        <details>
-          <summary>Can I convert nested JSON or API responses?</summary>
-          <p>Yes. The tool looks for non-empty arrays of objects, including arrays nested inside API response objects. You can choose which detected array to convert.</p>
-        </details>
-        <details>
-          <summary>Is my JSON data uploaded to a server?</summary>
-          <p>No. Conversion runs locally in your browser, so the JSON you enter is not sent to a conversion server by this tool.</p>
-        </details>
-        <details>
-          <summary>Can I choose which JSON fields become CSV columns?</summary>
-          <p>Yes. Use the column checklist to include only the fields you want. The preview and exported CSV reflect your selection.</p>
-        </details>
-        <details>
-          <summary>What happens to arrays inside a JSON object?</summary>
-          <p>Array values are kept in one CSV cell as JSON rather than being expanded into additional rows.</p>
-        </details>
-      </div>
+      <p>
+        This website may use hosting-provider infrastructure to deliver the page. If analytics,
+        advertising, or other third-party services are added in the future, this policy should
+        be updated to explain what data those services collect and how they use it.
+      </p>
+      <p>Contact: add a public contact email here before launch marketing or advertising.</p>
     </section>
 
     <footer class="site-footer">
       <span>DevConvert</span>
       <span>Simple tools for everyday developer workflows.</span>
+      <nav aria-label="Footer">
+        <a href="#about">About</a>
+        <a href="#privacy">Privacy Policy</a>
+      </nav>
     </footer>
   </main>
 </template>
-<style>
-
-.example-code {
-  overflow-x: auto;
-  padding: 1rem;
-  border: 1px solid var(--border, #e3e8ef);
-  border-radius: 10px;
-  background: var(--surface-soft, #f8fafc);
-  line-height: 1.55;
-}
-.faq-list {
-  display: grid;
-  gap: 0.65rem;
-}
-.faq-list details {
-  padding: 0.85rem 1rem;
-  border: 1px solid var(--border, #e3e8ef);
-  border-radius: 10px;
-}
-.faq-list summary {
-  cursor: pointer;
-  font-weight: 600;
-}
-.faq-list details p {
-  margin-bottom: 0;
-}
-
-</style>
