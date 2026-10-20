@@ -1,35 +1,49 @@
-# JSON to CSV Converter
+# DevConvert
 
-A Vue 3 + TypeScript + Vite starter for a browser-based JSON-to-CSV tool.
+DevConvert is a Vue 3, TypeScript, and Vite website with separate browser-based data conversion tools.
 
 ## Requirements
-- Node.js 20.19+ or 22.12+ recommended for current Vite 6 releases.
+
+- Node.js 20.19+ or 22.12+ recommended for Vite 6.
 
 ## Run locally
+
 ```bash
-npm install
+npm ci
 npm run dev
 ```
 
+Vite prints a local URL. The JSON-to-CSV tool is served from `/`, and JSON-to-Excel is served from `/json-to-excel.html`.
+
 ## Validate the project
+
 ```bash
 npm run type-check
 npm test
 npm run build
 ```
 
-## Privacy
-The conversion function runs in the browser. The starter does not send input JSON to a conversion API.
+## Available tools
 
-## Current conversion behavior
-- Detects non-empty arrays of objects at the top level or nested in API response objects; select the array when multiple candidates are found.
-- Nested objects flatten to dot-separated columns by default.
-- Arrays remain JSON text inside a single CSV cell.
-- Columns are collected in first-seen order; missing values become empty cells.
-- CSV quoting follows common CSV escaping rules.
-- Spreadsheet formula protection is a mitigation for common dangerous string prefixes, not a guarantee across every spreadsheet application.
+- `/` — JSON to CSV, including JSON array discovery, optional nested-object flattening, column selection, preview, and download.
+- `/json-to-excel.html` — JSON to Excel, exporting a real `.xlsx` workbook with typed number/boolean cells, column selection, frozen header row, and worksheet autofilter.
 
+Both tools process the input locally in the browser; the project does not send JSON input to a conversion API. CSV formula-prefix protection is a mitigation for common dangerous prefixes, not a guarantee across every spreadsheet application. Excel string cells are written as text rather than formulas.
 
-### Column selection
+## Project structure
 
-After conversion, use the simple column checklist to include only the fields you need. Select or deselect all columns at once. The CSV preview and download reflect the selected columns.
+- `index.html` — SEO metadata and HTML shell for the JSON-to-CSV page.
+- `json-to-excel.html` — SEO metadata and HTML shell for the JSON-to-Excel page.
+- `src/main-json-to-csv.ts` — mounts the JSON-to-CSV Vue component and global styles.
+- `src/main-json-to-excel.ts` — mounts the JSON-to-Excel Vue component and global styles.
+- `src/components/JsonToCsvTool.vue` — JSON-to-CSV interface and UI state.
+- `src/components/JsonToExcelTool.vue` — JSON-to-Excel interface and UI state.
+- `src/components/ToolPageLayout.vue` — shared header, tool navigation, footer, and page shell.
+- `src/utils/jsonArrayUtils.ts` — shared helpers for finding and reading object arrays in parsed JSON.
+- `src/utils/jsonToCsv.ts` — CSV conversion logic.
+- `src/utils/jsonToExcel.ts` — Excel data conversion and `.xlsx` workbook generation.
+- `src/utils/*.test.ts` — unit tests for converters and shared JSON-array helpers.
+- `src/style.css` — shared visual styles.
+- `vite.config.ts` — configures the two HTML entry pages for production builds.
+
+The two tools intentionally have separate HTML entry pages so each can maintain its own title, description, canonical URL, and social metadata. Shared JSON-array discovery helpers live in `jsonArrayUtils.ts`, rather than in the CSV-specific converter module.

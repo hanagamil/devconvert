@@ -1,6 +1,12 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { convertJsonToCsv, findObjectArrays, getValueAtPath, type ArrayCandidate } from './utils/jsonToCsv'
+import ToolPageLayout from './ToolPageLayout.vue'
+import { convertJsonToCsv } from '../utils/jsonToCsv'
+import {
+  findObjectArrays,
+  getValueAtPath,
+  type ArrayCandidate,
+} from '../utils/jsonArrayUtils'
 
 const exampleJson = `[
   {
@@ -202,15 +208,7 @@ convert()
 </script>
 
 <template>
-  <main class="page-shell">
-    <header class="site-header">
-      <a class="brand" href="/" aria-label="JSON to CSV Converter home">
-        <span class="brand-mark">{ }</span>
-        <span>DevConvert</span>
-      </a>
-      <span class="privacy-pill"><span class="privacy-dot"></span> Runs in your browser</span>
-    </header>
-
+  <ToolPageLayout active-tool="csv">
     <section class="hero">
       <p class="eyebrow">FREE DEVELOPER TOOL</p>
       <h1>JSON to CSV Converter</h1>
@@ -391,22 +389,31 @@ convert()
       </details>
     </section>
 
+    <section id="related-tools" class="info-section related-tools">
+      <h2>More free developer tools</h2>
+      <p>
+        Need an Excel workbook instead of a CSV file? Use our
+        <a href="/json-to-excel.html">JSON to Excel Converter</a> to preview data, select columns,
+        and download a real .xlsx workbook in your browser.
+      </p>
+    </section>
+
     <section id="about" class="info-section">
       <h2>About DevConvert</h2>
       <p>
-        DevConvert provides simple browser-based tools for everyday developer workflows.
-        Our first tool converts JSON arrays into CSV so developers can review data, select
-        columns, and export results without needing a separate application.
+        DevConvert provides simple browser-based tools for everyday developer workflows. Convert
+        JSON data to CSV or Excel, preview records, select fields, and export results without
+        needing a separate application.
       </p>
     </section>
 
     <section id="privacy" class="info-section">
       <h2>Privacy Policy</h2>
       <p>
-        The JSON-to-CSV conversion in this tool runs locally in your browser. The JSON you
-        enter or upload is processed on your device and is not sent to a DevConvert conversion
-        server. If you choose to copy or download the result, that action is handled by your
-        browser.
+        DevConvert's JSON-to-CSV and JSON-to-Excel conversions run locally in your browser. The
+        JSON you enter or upload is processed on your device and is not sent to a DevConvert
+        conversion server. If you choose to copy or download a result, that action is handled by
+        your browser.
       </p>
       <p>
         This website may use hosting-provider infrastructure to deliver the page. If analytics,
@@ -416,13 +423,5 @@ convert()
       <p>Contact: add a public contact email here before launch marketing or advertising.</p>
     </section>
 
-    <footer class="site-footer">
-      <span>DevConvert</span>
-      <span>Simple tools for everyday developer workflows.</span>
-      <nav aria-label="Footer">
-        <a href="#about">About</a>
-        <a href="#privacy">Privacy Policy</a>
-      </nav>
-    </footer>
-  </main>
+  </ToolPageLayout>
 </template>

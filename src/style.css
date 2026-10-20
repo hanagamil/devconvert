@@ -143,3 +143,21 @@ code { background: #e9edf5; border-radius: 4px; padding: 2px 5px; }
   accent-color: var(--accent, #5267df);
   flex: 0 0 auto;
 }
+
+
+/* Shared navigation for the DevConvert tool pages */
+.tool-nav { display: flex; align-items: center; justify-content: center; gap: 6px; }
+.tool-nav a { display: inline-flex; align-items: center; min-height: 36px; padding: 8px 10px; border-radius: 8px; color: #475467; font-size: 12px; font-weight: 650; text-decoration: none; white-space: nowrap; }
+.tool-nav a:hover { background: #edf2ff; color: var(--accent); }
+.tool-nav a.active { color: var(--accent); background: #edf2ff; }
+.related-tools a { color: var(--accent); font-weight: 700; text-underline-offset: 3px; }
+@media (max-width: 800px) {
+  .site-header { gap: 10px; }
+  .tool-nav { gap: 2px; }
+  .tool-nav a { padding: 7px; font-size: 11px; }
+}
+@media (max-width: 560px) {
+  .site-header { flex-wrap: wrap; height: auto; min-height: 72px; padding: 12px 0; row-gap: 8px; }
+  .site-header .tool-nav { order: 3; flex-basis: 100%; justify-content: flex-start; }
+  .site-header .privacy-pill { margin-left: auto; }
+}

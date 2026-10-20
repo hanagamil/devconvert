@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { convertJsonToCsv, findObjectArrays, getValueAtPath } from './jsonToCsv'
+import { convertJsonToCsv } from './jsonToCsv'
 
 describe('convertJsonToCsv', () => {
   it('converts an array of simple objects', () => {
@@ -159,35 +159,6 @@ describe('convertJsonToCsv', () => {
   it('rejects arrays containing non-object entries', () => {
     expect(() => convertJsonToCsv([{ name: 'Alice' }, null]))
       .toThrow('Every item in the top-level JSON array must be an object')
-  })
-
-  it('discovers arrays of objects inside API response objects', () => {
-    const input = {
-      data: {
-        users: [
-          { name: 'Alice' },
-          { name: 'Bob' },
-        ],
-      },
-      meta: { total: 2 },
-    }
-
-    const candidates = findObjectArrays(input)
-    expect(candidates.map((candidate) => candidate.path)).toContain('data.users')
-    expect(getValueAtPath(input, 'data.users')).toEqual(input.data.users)
-  })
-
-  it('finds a top-level array using the root path', () => {
-    const input = [{ id: 1 }, { id: 2 }]
-    const candidates = findObjectArrays(input)
-
-    expect(candidates[0].path).toBe('$')
-    expect(getValueAtPath(input, '$')).toEqual(input)
-  })
-
-  it('does not treat arrays of primitives as convertible object arrays', () => {
-    const candidates = findObjectArrays({ tags: ['vue', 'typescript'] })
-    expect(candidates).toEqual([])
   })
 
 })
